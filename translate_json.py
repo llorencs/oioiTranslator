@@ -5,13 +5,6 @@ import pickle
 from textblob import TextBlob
 import textblob
 
-def open_file(file: str):
-    """
-    """
-    file_path = Path(file)
-    if file_path.suffix = '.json':
-        pass
-
 def load_json(file: str) -> dict:
     """
     """
@@ -29,21 +22,32 @@ class File:
     def __init__(self, file: str):
         """
         """
-        self.file_name = Path(file).name
-        self.file_path = Path(file)
-        self.file = file
-        self.data = None
-        self.json = load_json(file)
+        if Path(file).suffix == '.json':
+            self.file_name = Path(file).name
+            self.file_path = Path(file)
+            self.file = file
         self.rows = []
         self.translation_file = None
+        if Path(file).suffix == '.pik':
+            self.translation_file = file
+            self.file = str(Path(Path(self.translation_file).parent, 
+                            Path(self.translation_file).stem))
+            self.file_path = Path(file)
+            self.file_name = self.file_path.name
+        self.json = load_json(self.file)
+        self.data = None
         self.translated_json = None
+        self.__load_contents()
     
-    def load_contents(self):
+    def __load_contents(self):
         """
         """
         if self.translation_file:
-            self.rows = pickle.load(self.translation_file, encoding='utf-8')
+            print(self.translation_file)
+            with open(self.translation_file, 'rb') as trans_file:
+                self.rows = pickle.load(trans_file, encoding='utf-8')
             self.data = self.json['data']
+            self.translated_json = deepcopy(self.json)
         else:
             self.data = self.json['data']
             self.translated_json = deepcopy(self.json)
@@ -119,8 +123,9 @@ if __name__ == '__main__':
     """
     """
     file = r'd:\PyProjects\gon_json\files\TET_Aviary Attorney\package\1catendcutscene.json'
+    file = r'd:\PyProjects\gon_json\files\TET_Aviary Attorney\package\1catintro.json'
     f= File(file)
-    f.load_contents()
+    #f.load_contents()
     with open(f.translation_file, 'rb') as trans_file:
         print(pickle.load(trans_file))
     for row in f.rows:
