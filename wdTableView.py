@@ -4,9 +4,9 @@
 Module implementing tvEditor.
 """
 
-from PyQt5.QtCore import pyqtSlot, QModelIndex
-from PyQt5.QtWidgets import QWidget, QFrame, QTextBrowser
-from PyQt5.QtGui import QStandardItemModel, QStandardItem
+from PyQt5.QtCore import pyqtSlot, QModelIndex, Qt
+from PyQt5.QtWidgets import QWidget, QFrame, QTextBrowser, QTextEdit
+from PyQt5.QtGui import QStandardItemModel, QStandardItem, QPixmap
 
 from Ui_wdTableView import Ui_tvEditor
 from translate_json import FileTranslator
@@ -50,29 +50,24 @@ class tvEditor(QWidget, Ui_tvEditor):
                 key = row.key
                 source = segment.source
                 target = segment.target
-                is_translated = False
+                is_translated = segment.is_translated
                 source_browser = QTextBrowser()
-                target_browser = QTextBrowser()
+                target_edit = QTextEdit()
                 source_browser.setFrameShape(QFrame.NoFrame)
                 source_browser.setText(source)
-                target_browser.setText(target)
-                target_browser.setFrameShape(QFrame.NoFrame)
+                target_edit.setText(target)
+                target_edit.setFrameShape(QFrame.NoFrame)
                 self.model.insertRow(nrow)
                 # Alias for self.model.index
                 idx_model = self.model.index
                 self.model.setData(idx_model(nrow, 0), key)
                 self.tableView.setIndexWidget(idx_model(nrow, 1), source_browser)
-                self.tableView.setIndexWidget(idx_model(nrow, 2), target_browser)
-                self.model.setData(idx_model(nrow, 3), is_translated)
+                self.tableView.setIndexWidget(idx_model(nrow, 2), target_edit)
+                if is_translated:
+                    self.model.setData(idx_model(nrow, 3), QPixmap(':/icons/Oxygen-Icons.org-Oxygen-Actions-games-endturn.ico'))
+                else:
+                    pass
                 self.model.setData(idx_model(nrow, 4), segment)
+                self.tableView.resizeColumnsToContents()
+                self.tableView.resizeRowsToContents()
 
-    @pyqtSlot(QModelIndex)
-    def on_tableView_pressed(self, index):
-        """
-        Slot documentation goes here.
-        
-        @param index DESCRIPTION
-        @type QModelIndex
-        """
-        # TODO: not implemented yet
-        raise NotImplementedError

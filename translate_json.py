@@ -108,6 +108,7 @@ class Segment:
         """
         self.__generate_segment(source)
         self.id = idx
+        self.is_translated = False
     
     def __generate_segment(self, source: str):
         """

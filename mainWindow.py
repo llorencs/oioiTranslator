@@ -27,7 +27,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.setupUi(self)
         self.file = None
         self.actionQuit.triggered.connect(qApp.quit)
-        self.open_tabs =list()
+        self.open_tabs = list()
         self.tabWidget.tabCloseRequested.connect(self.close_tab)
     
     @pyqtSlot()
@@ -42,7 +42,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         tveditor = tvEditor(self.tabWidget, self.file)
         self.open_tabs.append(tveditor)
         self.tabWidget.addTab(tveditor, str(file_name))
-        self.tabWidget.setLayout(QtWidgets.QVBoxLayout(self.tabWidget))
+        self.actionCleanup.setEnabled(True)
+        self.actionSave.setEnabled(True)
+        self.tabWidget.setCurrentIndex(-1)
+        #self.tabWidget.setLayout(QtWidgets.QVBoxLayout(self.tabWidget))
         #tab_layout = QtWidgets.QVBoxLayout(file_tab)
         #tab_layout.addWidget(tveditor)
         #file_tab.setLayout(tab_layout)
@@ -60,8 +63,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
         Slot documentation goes here.
         """
-        # TODO: not implemented yet
-        raise NotImplementedError
+        for table in self.open_tabs:
+            
+            for nrow in range(table.model.rowCount()):
+                segment = table.model.item(nrow, 4)
+                segment.target = table.model.item(nrow, 2)
+            table.translator.save_changes()
 
     def close_tab(self, current_idx: int):
         """
