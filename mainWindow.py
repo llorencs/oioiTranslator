@@ -37,14 +37,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
         files_filter = 'JSON (*.json);;Translation files (*.pik)'
         self.file, filter_set = QFileDialog.getOpenFileName(self, 'Open JSON/pik file', filter=files_filter)
-        file_tab = QWidget()
+        #file_tab = QWidget()
         file_name = Path(self.file).name
         tveditor = tvEditor(self.tabWidget, self.file)
         self.open_tabs.append(tveditor)
-        self.tabWidget.addTab(file_tab, str(file_name))
-        tab_layout = QtWidgets.QVBoxLayout(file_tab)
-        tab_layout.addWidget(tveditor)
-        file_tab.setLayout(tab_layout)
+        self.tabWidget.addTab(tveditor, str(file_name))
+        self.tabWidget.setLayout(QtWidgets.QVBoxLayout(self.tabWidget))
+        #tab_layout = QtWidgets.QVBoxLayout(file_tab)
+        #tab_layout.addWidget(tveditor)
+        #file_tab.setLayout(tab_layout)
     
     @pyqtSlot()
     def on_actionCleanup_triggered(self):
