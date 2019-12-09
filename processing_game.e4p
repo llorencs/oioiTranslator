@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-5.1.dtd">
 <!-- eric project file for project processing_game -->
-<!-- Saved: 2019-12-06, 01:39:38 -->
+<!-- Saved: 2019-12-08, 17:35:14 -->
 <!-- Copyright (C) 2019 Llorenç Suau, llorencs@gmail.com -->
 <Project version="5.1">
   <Language></Language>
@@ -13,8 +13,18 @@
   <Email>llorencs@gmail.com</Email>
   <Eol index="0"/>
   <Sources>
+    <Source>Ui_mainWindow.py</Source>
+    <Source>Ui_wdTableView.py</Source>
     <Source>__init__.py</Source>
+    <Source>main.py</Source>
+    <Source>mainWindow.py</Source>
+    <Source>translate_json.py</Source>
+    <Source>wdTableView.py</Source>
   </Sources>
+  <Forms>
+    <Form>mainWindow.ui</Form>
+    <Form>wdTableView.ui</Form>
+  </Forms>
   <Others>
     <Other>.gitignore</Other>
   </Others>

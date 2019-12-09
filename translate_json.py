@@ -16,7 +16,7 @@ def load_json(file: str) -> dict:
                 json_file = json.load(sfin)
     return json_file
 
-class File:
+class FileTranslator:
     """
     """
     def __init__(self, file: str):
@@ -124,7 +124,7 @@ if __name__ == '__main__':
     """
     file = r'd:\PyProjects\gon_json\files\TET_Aviary Attorney\package\1catendcutscene.json'
     file = r'd:\PyProjects\gon_json\files\TET_Aviary Attorney\package\1catintro.json'
-    f= File(file)
+    f= FileTranslator(file)
     #f.load_contents()
     with open(f.translation_file, 'rb') as trans_file:
         print(pickle.load(trans_file))
