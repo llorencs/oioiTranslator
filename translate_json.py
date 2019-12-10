@@ -76,7 +76,7 @@ class FileTranslator:
             translated_row[1][0] = target
         new_json = Path(self.file_path.parent, f'{self.file_path.stem}_es-ES{self.file_path.suffix}')
         with open(new_json, 'w', encoding='utf-8-sig') as fout:
-            json.dump(self.translated_json, fout, ensure_ascii=False, indent='4')
+            json.dump(self.translated_json, fout, ensure_ascii=False, indent=4)
     
     def save_changes(self):
         """
