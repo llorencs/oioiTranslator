@@ -5,7 +5,7 @@ Module implementing MainWindow.
 """
 
 from PyQt5.QtCore import pyqtSlot, QModelIndex
-from PyQt5.QtWidgets import QMainWindow, QFileDialog, qApp, QWidget
+from PyQt5.QtWidgets import QMainWindow, QFileDialog, qApp, QMessageBox
 from PyQt5 import QtWidgets
 from Ui_mainWindow import Ui_MainWindow
 
@@ -57,6 +57,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
         for tab in self.open_tabs:
             tab.translator.cleanup_translation()
+        QMessageBox.information(self, 'Cleanup completed', 
+                    'The cleanup of the files have been done')
     
     @pyqtSlot()
     def on_actionSave_triggered(self):
