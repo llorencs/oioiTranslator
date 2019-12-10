@@ -1,0 +1,14 @@
+<RCC>
+  <qresource prefix="icons">
+    <file>Elegantthemes-Beautiful-Flat-Merge.ico</file>
+    <file>Oxygen-Icons.org-Oxygen-Actions-document-open-folder.ico</file>
+    <file>Double-J-Design-Origami-Save.ico</file>
+    <file>Oxygen-Icons.org-Oxygen-Actions-application-exit.ico</file>
+    <file>Oxygen-Icons.org-Oxygen-Actions-dialog-cancel.ico</file>
+    <file>Oxygen-Icons.org-Oxygen-Actions-dialog-ok-apply.ico</file>
+    <file>Oxygen-Icons.org-Oxygen-Actions-document-save.ico</file>
+    <file>Oxygen-Icons.org-Oxygen-Actions-games-endturn.ico</file>
+    <file>Oxygen-Icons.org-Oxygen-Actions-system-shutdown.ico</file>
+    <file>Oxygen-Icons.org-Oxygen-Actions-view-refresh.ico</file>
+  </qresource>
+</RCC>
