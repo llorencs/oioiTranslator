@@ -4,7 +4,7 @@
 Module implementing tvEditor.
 """
 
-from PyQt5.QtCore import pyqtSlot, QModelIndex, Qt
+from PyQt5.QtCore import pyqtSlot, Qt
 from PyQt5.QtWidgets import QWidget, QFrame, QTextBrowser, QTextEdit
 from PyQt5.QtGui import QStandardItemModel, QStandardItem, QPixmap
 

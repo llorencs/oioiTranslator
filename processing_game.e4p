@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-5.1.dtd">
 <!-- eric project file for project processing_game -->
-<!-- Saved: 2019-12-08, 17:35:14 -->
+<!-- Saved: 2019-12-10, 06:43:23 -->
 <!-- Copyright (C) 2019 Llorenç Suau, llorencs@gmail.com -->
 <Project version="5.1">
   <Language></Language>
@@ -25,9 +25,13 @@
     <Form>mainWindow.ui</Form>
     <Form>wdTableView.ui</Form>
   </Forms>
+  <Resources>
+    <Resource>resources/icons.qrc</Resource>
+  </Resources>
   <Others>
     <Other>.gitignore</Other>
   </Others>
+  <MainScript>main.py</MainScript>
   <Vcs>
     <VcsType>Git</VcsType>
     <VcsOptions>

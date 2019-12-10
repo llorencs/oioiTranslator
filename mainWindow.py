@@ -4,7 +4,7 @@
 Module implementing MainWindow.
 """
 
-from PyQt5.QtCore import pyqtSlot
+from PyQt5.QtCore import pyqtSlot, QModelIndex
 from PyQt5.QtWidgets import QMainWindow, QFileDialog, qApp, QWidget
 from PyQt5 import QtWidgets
 from Ui_mainWindow import Ui_MainWindow
@@ -55,8 +55,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
         Slot documentation goes here.
         """
-        # TODO: not implemented yet
-        raise NotImplementedError
+        for tab in self.open_tabs:
+            tab.translator.cleanup_translation()
     
     @pyqtSlot()
     def on_actionSave_triggered(self):
@@ -66,9 +66,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         for table in self.open_tabs:
             
             for nrow in range(table.model.rowCount()):
-                segment = table.model.item(nrow, 4)
-                segment.target = table.model.item(nrow, 2)
+                target_idx = table.tableView.model().index(nrow, 2)
+                segment = table.tableView.model().index(nrow, 4).data()
+                segment.target = table.tableView.indexWidget(target_idx).toPlainText()
+                print(segment.target)
             table.translator.save_changes()
+#            with open(table.translator.translation_file, 'rb') as fout:
+#                import pickle
+#                contents = pickle.load(fout, encoding='utf-8')
+#                for row in contents:
+#                    for segment in row.segments:
+#                        print(segment.source, segment.target)
 
     def close_tab(self, current_idx: int):
         """

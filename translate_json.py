@@ -22,12 +22,15 @@ class FileTranslator:
     def __init__(self, file: str):
         """
         """
+        self.translation_file = None
         if Path(file).suffix == '.json':
             self.file_name = Path(file).name
             self.file_path = Path(file)
             self.file = file
+            if Path(f'{self.file}.pik').exists():
+                self.translation_file = f'{self.file}.pik'
         self.rows = []
-        self.translation_file = None
+        
         if Path(file).suffix == '.pik':
             self.translation_file = file
             self.file = str(Path(Path(self.translation_file).parent, 
@@ -73,7 +76,7 @@ class FileTranslator:
             translated_row[1][0] = target
         new_json = Path(self.file_path.parent, f'{self.file_path.stem}_es-ES{self.file_path.suffix}')
         with open(new_json, 'w', encoding='utf-8-sig') as fout:
-            json.dump(self.translated_json, fout, ensure_ascii=False)
+            json.dump(self.translated_json, fout, ensure_ascii=False, indent='4')
     
     def save_changes(self):
         """
